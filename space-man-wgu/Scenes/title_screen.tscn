@@ -1,0 +1,128 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcel1tmuahre4"]
+
+[ext_resource type="Script" uid="uid://bcg7g7nqxgkk1" path="res://title_screen.gd" id="1_klylv"]
+[ext_resource type="Script" uid="uid://cr44apse0rbd1" path="res://Scenes/rigid_body_2d.gd" id="2_6vd4x"]
+[ext_resource type="Texture2D" uid="uid://bk0uomi2kx64t" path="res://Assets/Title/Untethered title asteroid.png" id="2_55kwv"]
+[ext_resource type="Texture2D" uid="uid://dx1hloylbksjb" path="res://Assets/astronaut.png" id="3_6vd4x"]
+[ext_resource type="Texture2D" uid="uid://caqa5a6vphia2" path="res://Assets/Title/Untethered title.png" id="3_12m1t"]
+[ext_resource type="Texture2D" uid="uid://fcpjx47tn838" path="res://Assets/Title/Untethered title START.png" id="4_6vd4x"]
+[ext_resource type="Script" uid="uid://damah1grua4hd" path="res://Scenes/static_body_2d.gd" id="4_n82rj"]
+[ext_resource type="Texture2D" uid="uid://difmt01quodme" path="res://Assets/Title/Untethered title QUIT.png" id="5_n82rj"]
+[ext_resource type="Texture2D" uid="uid://dkxola2nuonv7" path="res://Assets/Title/Untethered title START hover.png" id="8_8mikk"]
+[ext_resource type="Texture2D" uid="uid://drhpycqy25fuy" path="res://Assets/Title/Untethered title QUIT hover.png" id="10_sqelc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n82rj"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_klylv")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 375.0
+offset_top = -37.0
+offset_right = 432.925
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+z_index = -9
+y_sort_enabled = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="StartButton" type="Button" parent="PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "START"
+
+[node name="QuitButton" type="Button" parent="PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "QUIT"
+
+[node name="RigidBody2D" type="StaticBody2D" parent="."]
+position = Vector2(320, 342)
+script = ExtResource("2_6vd4x")
+
+[node name="Asteroid" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(-3, -3)
+texture = ExtResource("2_55kwv")
+offset = Vector2(742.92, 225)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
+position = Vector2(742, 222)
+polygon = PackedVector2Array(-788, -451.4, -788, -449.8, -816, -444.7, -816, -444, -846.5, -444, -856.5, -439, -859.2, -439, -866.2, -426, -867.6, -426, -875, -396.2, -875, -393.4, -889, -363.4, -889, -359.9, -913, -330, -914.6, -330, -917.7, -315, -919.2, -315, -916, -271.9, -916, -249.5, -923.4, -228, -925, -228, -925, -197.4, -938.2, -169, -939.6, -169, -947.7, -131, -949.4, -131, -948, -122.7, -948, -119.2, -943, -114.2, -943, -112.1, -914, -85.1, -914, -83.8, -873, -62.8, -873, -61.5, -796.3, -41, -792.5, -41, -772.6, -29, -734.5, -29, -720.5, -36, -718.1, -36, -702, -55.3, -693, -59.7, -684.1, -59, -676.7, -59, -650.9, -66, -647.3, -66, -621, -86, -621, -86.8, -597.5, -99, -594.9, -99, -578, -125.4, -578, -127.2, -551.2, -154, -549.6, -154, -542.6, -174, -541, -174, -541, -210.3, -548.6, -233, -549.2, -233, -552.3, -255, -553, -255, -554, -291.1, -554, -294.7, -609.1, -359, -609.9, -359, -626, -384.7, -626, -386.9, -641, -399.9, -641, -401.1, -671, -419.1, -671, -421.1, -713, -420, -716.7, -420, -739.6, -430, -741.5, -430, -768, -446.1, -768, -447.7)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1025, 704)
+script = ExtResource("4_n82rj")
+rotation_speed = -8.0
+
+[node name="Player" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(0, 6)
+scale = Vector2(4, 4)
+texture = ExtResource("3_6vd4x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 9)
+shape = SubResource("CircleShape2D_n82rj")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = -4
+
+[node name="Title" type="Sprite2D" parent="CanvasLayer2"]
+position = Vector2(959, 537)
+scale = Vector2(0.919654, 0.919654)
+texture = ExtResource("3_12m1t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="StartButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1204.0
+offset_top = 505.0
+offset_right = 1714.0
+offset_bottom = 655.0
+texture_normal = ExtResource("4_6vd4x")
+texture_hover = ExtResource("8_8mikk")
+
+[node name="QuitButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1264.0
+offset_top = 668.0
+offset_right = 1630.0
+offset_bottom = 804.0
+texture_normal = ExtResource("5_n82rj")
+texture_hover = ExtResource("10_sqelc")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

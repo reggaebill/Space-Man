@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbfsd2kstam7a"]
+
+[ext_resource type="Script" uid="uid://i7onglbfoj4m" path="res://Scenes/player.gd" id="1_ahf6t"]
+[ext_resource type="Texture2D" uid="uid://dx1hloylbksjb" path="res://Assets/astronaut.png" id="2_crjd8"]
+[ext_resource type="Script" uid="uid://b5d35xh8fftjx" path="res://Scenes/grapple_controller.gd" id="2_viq8v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6ijs"]
+size = Vector2(121, 121)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ahf6t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_crjd8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_h6ijs")
+
+[node name="GrappleController" type="Node2D" parent="."]
+script = ExtResource("2_viq8v")
+
+[node name="RayCast2D" type="RayCast2D" parent="GrappleController"]
+target_position = Vector2(800, 0)
+
+[node name="Line2D" type="Line2D" parent="GrappleController"]
+z_index = -1
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(0, 0, 0, 1)
